@@ -1,6 +1,6 @@
 .story {
   width: 75%;
-
+  background-color: rgba($color-white, 0.6);
   box-shadow: 0 3rem 6rem rgba($color-black, 0.15);
   color: $color-black;
   border-radius: 3px;
@@ -9,6 +9,8 @@
   font-size: $default-font-size;
   transform: skewX(-12deg);
   margin: 8rem auto;
+  backface-visibility: hidden;
+
   @include clearfix;
 
   &__shape {
