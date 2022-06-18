@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browserslist": "last 10 versions",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:sass": "node-sass sass/main.scss css/style.css -w",
+    "devserver": "live-server",
+    "start": "npm-run-all --parallel devserver watch:sass",
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
+    "concat:css": "concat -o css/style.concat.css css/icon.css css/style.comp.css",
+    "prefix:css": "postcss css/style.concat.css --use autoprefixer  -o css/style.prefix.css",
+    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"
   },
   "author": "Hoang Nhan",
   "license": "ISC",
@@ -13,6 +20,11 @@
     "jquery": "^3.6.0"
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "autoprefixer": "^9.8.6",
+    "concat": "^1.0.3",
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0"
   }
 }
